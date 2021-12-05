@@ -5,7 +5,7 @@ const {
 
 const XaPhuongThiTranRouter = Router();
 
-XaPhuongThiTranRouter.get("/", layDanhSachXaPhuongThiTran);
+XaPhuongThiTranRouter.get("/XaPhuongThiTran", layDanhSachXaPhuongThiTran);
 
 module.exports = {
   XaPhuongThiTranRouter,

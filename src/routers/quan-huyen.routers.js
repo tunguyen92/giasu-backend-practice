@@ -5,7 +5,7 @@ const {
 
 const quanHuyenRouter = Router();
 
-quanHuyenRouter.get("/", layDanhSachQuanHuyen);
+quanHuyenRouter.get("/QuanHuyen", layDanhSachQuanHuyen);
 
 module.exports = {
   quanHuyenRouter,

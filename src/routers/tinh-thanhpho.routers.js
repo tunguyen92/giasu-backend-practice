@@ -5,7 +5,7 @@ const {
 
 const TinhThanhPhoRouter = Router();
 
-TinhThanhPhoRouter.get("/", layDanhSachTinhThanhPho);
+TinhThanhPhoRouter.get("/TinhThanhPho", layDanhSachTinhThanhPho);
 
 module.exports = {
   TinhThanhPhoRouter,

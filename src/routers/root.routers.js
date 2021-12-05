@@ -8,12 +8,12 @@ const { XaPhuongThiTranRouter } = require("./xa-phuong-thitran.routers");
 const rootRouter = Router();
 
 // http://localhost:8080/api/v1/nguoihoc
-rootRouter.use("/nguoi-hoc", nguoiHocRouter);
-rootRouter.use("/xac-thuc", authRouter);
-rootRouter.use("/gia-su", giaSuRouter);
-rootRouter.use("/quan-huyen", quanHuyenRouter);
-rootRouter.use("/tinh-thanhpho", TinhThanhPhoRouter);
-rootRouter.use("/xa-phuong-thitran", XaPhuongThiTranRouter);
+rootRouter.use("/NguoiHoc", nguoiHocRouter);
+rootRouter.use("/XacThuc", authRouter);
+rootRouter.use("/GiaSu", giaSuRouter);
+rootRouter.use("/DonViHanhChinh", quanHuyenRouter);
+rootRouter.use("/DonViHanhChinh", TinhThanhPhoRouter);
+rootRouter.use("/DonViHanhChinh", XaPhuongThiTranRouter);
 
 module.exports = {
   rootRouter,

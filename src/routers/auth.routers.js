@@ -7,11 +7,13 @@ const {
 } = require("../controllers/auth.controllers");
 
 const authRouter = Router();
+const { NguoiHoc, GiaSu } = require("../models");
 
-authRouter.post("/dang-ki-nguoi-hoc", dangKiNguoiHoc);
-authRouter.post("/dang-ki-gia-su", dangKiGiaSu);
-authRouter.post("/dang-nhap", dangNhap);
-authRouter.post("/cai-lai-mat-khau", caiLaiMatKhau);
+authRouter.post("/DangKiNguoiHoc", dangKiNguoiHoc);
+authRouter.post("/DangKiGiaSu", dangKiGiaSu);
+authRouter.post("/DangNhapNguoiHoc", dangNhap(NguoiHoc));
+authRouter.post("/DangNhapGiaSu", dangNhap(GiaSu));
+authRouter.post("/CaiLaiMatKhau", caiLaiMatKhau);
 
 module.exports = {
   authRouter,

@@ -7,13 +7,19 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({ TinhThanhPho }) {
       // define association here
+      this.belongsTo(TinhThanhPho, {
+        foreignKey: "matp",
+      });
     }
   }
   QuanHuyen.init(
     {
-      maqh: DataTypes.STRING(5),
+      maqh: {
+        type: DataTypes.STRING(5),
+        primaryKey: true,
+      },
       name: DataTypes.STRING(100),
       type: DataTypes.STRING(30),
       matp: DataTypes.STRING(5),
@@ -23,5 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "QuanHuyen",
     }
   );
+  QuanHuyen.removeAttribute("createdAt");
+  QuanHuyen.removeAttribute("updatedAt");
   return QuanHuyen;
 };

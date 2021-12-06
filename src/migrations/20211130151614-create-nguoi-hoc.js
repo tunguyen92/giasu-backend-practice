@@ -1,75 +1,81 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('NguoiHocs', {
+    await queryInterface.createTable("NguoiHocs", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       sdt: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       matKhau: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nguoiDung: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       vaiTro: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       hoTen: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      anhDaiDien: {
+        type: Sequelize.STRING,
       },
       monHoc: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       lopHoc: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       tinhThanh: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       quanHuyen: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phuongXa: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       duong: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       diaChi: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       mucLuong: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       soBuoi: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       thoiGian: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       thongTin: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       yeuCau: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      maqh: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('NguoiHocs');
-  }
+    await queryInterface.dropTable("NguoiHocs");
+  },
 };

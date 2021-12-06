@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "khachHang",
       },
       hoTen: DataTypes.STRING,
+      anhDaiDien: DataTypes.STRING,
       monHoc: DataTypes.STRING,
       lopHoc: DataTypes.STRING,
       tinhThanh: DataTypes.STRING,

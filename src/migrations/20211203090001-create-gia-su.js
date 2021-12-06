@@ -48,10 +48,22 @@ module.exports = {
         type: Sequelize.STRING,
       },
       anhBangCap: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(2000),
+        get: function () {
+          return JSON.parse(this.getDataValue("value"));
+        },
+        set: function (value) {
+          this.setDataValue("value", JSON.stringify(value));
+        },
       },
       anhCCCD: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
+        get: function () {
+          return JSON.parse(this.getDataValue("value"));
+        },
+        set: function (value) {
+          this.setDataValue("value", JSON.stringify(value));
+        },
       },
       truongHoc: {
         type: Sequelize.STRING,
@@ -78,6 +90,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       thoiGianDay: {
+        type: Sequelize.STRING,
+      },
+      maqh: {
         type: Sequelize.STRING,
       },
       createdAt: {

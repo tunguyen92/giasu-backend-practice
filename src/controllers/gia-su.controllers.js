@@ -1,8 +1,6 @@
 const { GiaSu } = require("../models");
 const bcryptjs = require("bcryptjs");
 const { cloudinary } = require("../utils/cloudinary");
-const fs = require("fs");
-require("dotenv").config();
 
 const layDanhSachGiaSu = async (req, res) => {
   try {
@@ -179,17 +177,27 @@ const xoaGiaSu = async (req, res) => {
 
 const anhDaiDien = async (req, res) => {
   try {
+    const { nguoiDung, file } = req;
+    const userUploadAvatar = await GiaSu.findByPk(nguoiDung.id);
+
     // cloudinary.v2.uploader.upload(file, options, callback);
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const result = await cloudinary.uploader.upload(file.path, {
       use_filename: true,
       folder: "/giasumantiep/avatar-giasu",
+      format: "png",
+      // Giảm dung lượng hình cho vào kích thước 300x300
       transformation: {
         background: "black",
         height: 300,
         width: 300,
         crop: "pad",
+        quality: "auto",
+        fetch_format: "auto",
       },
     });
+
+    userUploadAvatar.anhDaiDien = result.url;
+    await userUploadAvatar.save();
 
     res.status(200).json({
       message: "Upload avatar thành công",
@@ -202,13 +210,48 @@ const anhDaiDien = async (req, res) => {
 
 const anhBangCap = async (req, res) => {
   try {
+    const { nguoiDung, files } = req;
+    const anhBangCapGiaSu = await GiaSu.findByPk(nguoiDung.id);
     const urls = [];
 
-    for (const file of req.files) {
+    for (const file of files) {
       const { path } = file;
       const result = await cloudinary.uploader.upload(path, {
         use_filename: true,
         folder: "/giasumantiep/anhbangcap-giasu",
+        transformation: {
+          background: "black",
+          height: 600,
+          width: 1200,
+          crop: "pad",
+        },
+      });
+      urls.push(result.url);
+    }
+
+    anhBangCapGiaSu.anhBangCap = urls;
+    await anhBangCapGiaSu.save();
+
+    res.status(200).json({
+      message: "Upload ảnh thành công",
+      urls: urls,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const anhCCCD = async (req, res) => {
+  try {
+    const { nguoiDung, files } = req;
+    const anhBangCapGiaSu = await GiaSu.findByPk(nguoiDung.id);
+    const urls = [];
+
+    for (const file of files) {
+      const { path } = file;
+      const result = await cloudinary.uploader.upload(path, {
+        use_filename: true,
+        folder: "/giasumantiep/anhCCD-giasu",
         transformation: {
           background: "black",
           height: 400,
@@ -218,6 +261,9 @@ const anhBangCap = async (req, res) => {
       });
       urls.push(result.url);
     }
+
+    anhBangCapGiaSu.anhCCCD = urls;
+    await anhBangCapGiaSu.save();
 
     res.status(200).json({
       message: "Upload ảnh thành công",
@@ -236,4 +282,5 @@ module.exports = {
   xoaGiaSu,
   anhDaiDien,
   anhBangCap,
+  anhCCCD,
 };

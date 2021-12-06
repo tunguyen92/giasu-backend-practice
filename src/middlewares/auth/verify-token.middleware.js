@@ -7,7 +7,7 @@ const authenticate = (req, res, next) => {
     const secretKey = process.env.SECRETKEY;
     const decode = jwt.verify(token, secretKey);
 
-    req.nguoiHoc = decode;
+    req.nguoiDung = decode;
     next();
   } catch (error) {
     res.status(401).send({
@@ -17,9 +17,8 @@ const authenticate = (req, res, next) => {
 };
 
 const authorize = (arrayRole) => (req, res, next) => {
-  console.log(req);
-  const { nguoiHoc } = req;
-  if (arrayRole.includes(nguoiHoc.vaiTro)) {
+  const { nguoiDung } = req;
+  if (arrayRole.includes(nguoiDung.vaiTro)) {
     next();
   } else {
     res.status(403).send({

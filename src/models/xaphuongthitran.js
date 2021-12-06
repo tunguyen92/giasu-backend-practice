@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   XaPhuongThiTran.init(
     {
-      xaid: DataTypes.STRING(5),
+      xaid: {
+        type: DataTypes.STRING(5),
+        primaryKey: true,
+      },
       name: DataTypes.STRING(100),
       type: DataTypes.STRING(30),
       maqh: DataTypes.STRING(5),
@@ -23,5 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "XaPhuongThiTran",
     }
   );
+  XaPhuongThiTran.removeAttribute("createdAt");
+  XaPhuongThiTran.removeAttribute("updatedAt");
   return XaPhuongThiTran;
 };

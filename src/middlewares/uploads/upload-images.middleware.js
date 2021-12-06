@@ -12,35 +12,42 @@ const storage = multer.diskStorage({
   },
 });
 const fileFilter = (req, file, cb) => {
-  if (!file.mimetype.match(/png||jpg||jpeg$i/)) {
+  if (!file.mimetype.match(/(jpg|jpeg|png)$/i)) {
     return cb(
       new Error("Bạn hãy đổi đuôi hình là .png, .jpg hoặc .jpeg"),
       false
     );
   }
 
-  const fileSize = parseInt(req.headers["content-length"]);
-  if (fileSize > 500000) {
-    return cb(new Error("Kích thước ảnh phải nhỏ hơn 500kb"), false);
-  }
+  // const fileSize = parseInt(req.headers["content-length"]);
+  // if (fileSize > 1000000) {
+  //   return cb(new Error("Dung lượng ảnh cần nhỏ hơn"), false);
+  // }
 
   cb(null, true);
 };
 
-const upload = multer({
+const uploadSingle = multer({
   storage: storage,
   limits: {
-    fileSize: 500000,
+    fileSize: 1000000,
+  },
+  fileFilter: fileFilter,
+});
+const uploadMultiple = multer({
+  storage: storage,
+  limits: {
+    fileSize: 4000000,
   },
   fileFilter: fileFilter,
 });
 
 const uploadSingleImage = (typeImage) => {
-  return upload.single(typeImage);
+  return uploadSingle.single(typeImage);
 };
 
 const uploadMultipleImage = (typeImage, quantity) => {
-  return upload.array(typeImage, quantity);
+  return uploadMultiple.array(typeImage, quantity);
 };
 
 module.exports = {

@@ -24,7 +24,7 @@ nguoiHocRouter.put("/:id", checkExist(NguoiHoc), capNhatNguoiHoc);
 nguoiHocRouter.delete(
   "/:id",
   authenticate,
-  authorize("quanTri"),
+  authorize("quanTri", "admin"),
   checkExist(NguoiHoc),
   xoaNguoiHoc
 );

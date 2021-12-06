@@ -7,6 +7,7 @@ const {
   xoaGiaSu,
   anhDaiDien,
   anhBangCap,
+  anhCCCD,
 } = require("../controllers/gia-su.controllers");
 
 const {
@@ -24,11 +25,23 @@ const { GiaSu } = require("../models");
 
 const giaSuRouter = Router();
 
-giaSuRouter.post("/AnhDaiDien", uploadSingleImage("AnhDaiDien"), anhDaiDien);
+giaSuRouter.post(
+  "/AnhDaiDien",
+  authenticate,
+  uploadSingleImage("AnhDaiDien"),
+  anhDaiDien
+);
 giaSuRouter.post(
   "/AnhBangCap",
-  uploadMultipleImage("AnhBangCap", 2),
+  authenticate,
+  uploadMultipleImage("AnhBangCap", 4),
   anhBangCap
+);
+giaSuRouter.post(
+  "/AnhCCCD",
+  authenticate,
+  uploadMultipleImage("AnhCCCD", 2),
+  anhCCCD
 );
 
 giaSuRouter.get("/", layDanhSachGiaSu);
@@ -38,7 +51,7 @@ giaSuRouter.put("/:id", checkExist(GiaSu), capNhatGiaSu);
 giaSuRouter.delete(
   "/:id",
   authenticate,
-  authorize("quanTri"),
+  authorize("quanTri", "admin"),
   checkExist(GiaSu),
   xoaGiaSu
 );

@@ -48,7 +48,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       mucLuong: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
       },
       soBuoi: {
         type: Sequelize.STRING,
@@ -61,6 +61,9 @@ module.exports = {
       },
       yeuCau: {
         type: Sequelize.STRING,
+      },
+      trangThai: {
+        type: Sequelize.BOOLEAN,
       },
       maqh: {
         type: Sequelize.STRING,

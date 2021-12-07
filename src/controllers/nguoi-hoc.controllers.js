@@ -43,6 +43,7 @@ const taoNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
+      trangThai,
     } = req.body;
 
     const salt = bcryptjs.genSaltSync(10);
@@ -67,6 +68,7 @@ const taoNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
+      trangThai,
     });
     res.status(201).send(nguoiHocMoi);
   } catch (error) {
@@ -96,6 +98,7 @@ const capNhatNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
+      trangThai,
     } = req.body;
 
     const salt = bcryptjs.genSaltSync(10);
@@ -121,6 +124,7 @@ const capNhatNguoiHoc = async (req, res) => {
         thoiGian,
         thongTin,
         yeuCau,
+        trangThai,
       },
       {
         where: {

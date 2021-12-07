@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.hasMany(QuanHuyen, {
         foreignKey: "matp",
+        as: "quanhuyen",
       });
     }
   }

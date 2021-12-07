@@ -7,8 +7,13 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({ NguoiHoc }) {
       // define association here
+      this.belongsToMany(NguoiHoc, {
+        foreignKey: "id",
+        as: "nguoiHoc",
+        through: "datLop",
+      });
     }
   }
   GiaSu.init(

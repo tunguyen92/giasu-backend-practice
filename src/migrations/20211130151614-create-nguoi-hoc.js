@@ -62,7 +62,7 @@ module.exports = {
       yeuCau: {
         type: Sequelize.STRING,
       },
-      trangThai: {
+      daGiao: {
         type: Sequelize.BOOLEAN,
       },
       maqh: {

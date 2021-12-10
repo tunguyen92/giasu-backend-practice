@@ -5,6 +5,7 @@ const {
   layChiTietNguoiHoc,
   capNhatNguoiHoc,
   xoaNguoiHoc,
+  thongTinNguoiHoc,
 } = require("../controllers/nguoi-hoc.controllers");
 const {
   authenticate,
@@ -28,6 +29,7 @@ nguoiHocRouter.delete(
   checkExist(NguoiHoc),
   xoaNguoiHoc
 );
+nguoiHocRouter.post("/ThongTinNguoiHoc", thongTinNguoiHoc);
 
 module.exports = {
   nguoiHocRouter,

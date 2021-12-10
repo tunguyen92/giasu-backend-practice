@@ -1,4 +1,4 @@
-const { NguoiHoc } = require("../models");
+const { NguoiHoc, DatLop, GiaSu } = require("../models");
 const bcryptjs = require("bcryptjs");
 
 const layDanhSachNguoiHoc = async (req, res) => {
@@ -43,7 +43,7 @@ const taoNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
-      trangThai,
+      daGiao,
     } = req.body;
 
     const salt = bcryptjs.genSaltSync(10);
@@ -68,7 +68,7 @@ const taoNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
-      trangThai,
+      daGiao,
     });
     res.status(201).send(nguoiHocMoi);
   } catch (error) {
@@ -98,7 +98,7 @@ const capNhatNguoiHoc = async (req, res) => {
       thoiGian,
       thongTin,
       yeuCau,
-      trangThai,
+      daGiao,
     } = req.body;
 
     const salt = bcryptjs.genSaltSync(10);
@@ -124,7 +124,7 @@ const capNhatNguoiHoc = async (req, res) => {
         thoiGian,
         thongTin,
         yeuCau,
-        trangThai,
+        daGiao,
       },
       {
         where: {
@@ -154,10 +154,33 @@ const xoaNguoiHoc = async (req, res) => {
   }
 };
 
+const thongTinNguoiHoc = async (req, res) => {
+  try {
+    const { sdt } = req.body;
+    const nguoiHoc = await NguoiHoc.findAll({
+      where: {
+        sdt,
+      },
+      include: [
+        {
+          model: DatLop,
+          as: "datLop",
+          attributes: { exclude: ["nguoiHocId", "giaSuId"] },
+          include: [{ model: GiaSu, as: "giaSu" }],
+        },
+      ],
+    });
+    res.status(200).send(nguoiHoc);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   layDanhSachNguoiHoc,
   layChiTietNguoiHoc,
   taoNguoiHoc,
   capNhatNguoiHoc,
   xoaNguoiHoc,
+  thongTinNguoiHoc,
 };

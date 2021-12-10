@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      "nguoihocs",
+      "datlops",
       [
         {
           nguoiHocId: 1,
@@ -62,5 +62,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("datlops", null, {});
   },
 };

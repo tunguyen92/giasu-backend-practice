@@ -1,4 +1,4 @@
-const { GiaSu } = require("../models");
+const { GiaSu, DatLop, NguoiHoc } = require("../models");
 const bcryptjs = require("bcryptjs");
 const { cloudinary } = require("../utils/cloudinary");
 
@@ -274,6 +274,28 @@ const anhCCCD = async (req, res) => {
   }
 };
 
+const thongTinGiaSu = async (req, res) => {
+  try {
+    const { sdt } = req.body;
+    const giaSu = await GiaSu.findAll({
+      where: {
+        sdt,
+      },
+      include: [
+        {
+          model: DatLop,
+          as: "datLop",
+          attributes: { exclude: ["giaSuId", "nguoiHocId"] },
+          include: [{ model: NguoiHoc, as: "nguoiHoc" }],
+        },
+      ],
+    });
+    res.status(200).send(giaSu);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   layDanhSachGiaSu,
   layChiTietGiaSu,
@@ -283,4 +305,5 @@ module.exports = {
   anhDaiDien,
   anhBangCap,
   anhCCCD,
+  thongTinGiaSu,
 };

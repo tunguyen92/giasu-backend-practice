@@ -9,12 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.GiaSu, {
+        foreignKey: "giaSuId",
+        as: "giaSu",
+      });
+      this.belongsTo(models.NguoiHoc, {
+        foreignKey: "nguoiHocId",
+        as: "nguoiHoc",
+      });
     }
   }
   DatLop.init(
     {
-      nguoiHocId: DataTypes.STRING,
-      giaSuId: DataTypes.STRING,
+      nguoiHocId: DataTypes.INTEGER,
+      giaSuId: DataTypes.INTEGER,
     },
     {
       sequelize,

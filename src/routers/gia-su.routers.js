@@ -26,6 +26,96 @@ const { GiaSu } = require("../models");
 
 const giaSuRouter = Router();
 
+/**
+ * @swagger
+ * /api/v1/GiaSu/AnhDaiDien:
+ *   post:
+ *     summary: Upload ảnh đại diện
+ *     tags: [GiaSu]
+ *     description: ""
+ *     operationId: "uploadFile"
+ *     consumes:
+ *     - "multipart/form-data"
+ *     produces:
+ *     - "application/json"
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token
+ *       - in: formData
+ *         name: File
+ *         description: File to upload
+ *         schema:
+ *           type: file
+ *     responses:
+ *       200:
+ *         description: Upload ảnh thành công
+ *       500:
+ *         description: Some server error
+ */
+/**
+ * @swagger
+ * /api/v1/GiaSu/AnhBangCap:
+ *   post:
+ *     summary: Upload ảnh bằng cấp
+ *     tags: [GiaSu]
+ *     description: ""
+ *     operationId: "uploadFile"
+ *     consumes:
+ *     - "multipart/form-data"
+ *     produces:
+ *     - "application/json"
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token
+ *       - in: formData
+ *         name: File
+ *         description: File to upload
+ *         schema:
+ *           type: file
+ *     responses:
+ *       200:
+ *         description: Upload ảnh thành công
+ *       500:
+ *         description: Some server error
+ */
+/**
+ * @swagger
+ * /api/v1/GiaSu/AnhCCCD:
+ *   post:
+ *     summary: Upload ảnh CMND/CCCD
+ *     tags: [GiaSu]
+ *     description: ""
+ *     operationId: "uploadFile"
+ *     consumes:
+ *     - "multipart/form-data"
+ *     produces:
+ *     - "application/json"
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token
+ *       - in: formData
+ *         name: File
+ *         description: File to upload
+ *         schema:
+ *           type: file
+ *     responses:
+ *       200:
+ *         description: Upload ảnh thành công
+ *       500:
+ *         description: Some server error
+ */
 giaSuRouter.post(
   "/AnhDaiDien",
   authenticate,

@@ -10,6 +10,19 @@ module.exports = {
       },
       sdt: {
         type: Sequelize.STRING,
+        // validate: {
+        //   isUnique: (value, next) => {
+        //     NguoiHoc.findAll({
+        //       where: { sdt: value },
+        //       attributes: ["id"],
+        //     })
+        //       .then((user) => {
+        //         if (user.length != 0) next(new Error("Sđt đã dược sử dụng!"));
+        //         next();
+        //       })
+        //       .catch((onError) => console.log(onError));
+        //   },
+        // },
       },
       matKhau: {
         type: Sequelize.STRING,
@@ -21,6 +34,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       hoTen: {
+        type: Sequelize.STRING,
+      },
+      gioiTinh: {
         type: Sequelize.STRING,
       },
       anhDaiDien: {
@@ -48,6 +64,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
       mucLuong: {
+        type: Sequelize.FLOAT,
+      },
+      phanTramPhi: {
+        type: Sequelize.INTEGER,
+      },
+      phiGiaSu: {
         type: Sequelize.FLOAT,
       },
       soBuoi: {

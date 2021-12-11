@@ -32,6 +32,9 @@ module.exports = {
       ngaySinh: {
         type: Sequelize.DATE,
       },
+      gioiTinh: {
+        type: Sequelize.STRING,
+      },
       nguyenQuan: {
         type: Sequelize.STRING,
       },

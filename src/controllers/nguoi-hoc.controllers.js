@@ -1,5 +1,6 @@
 const { NguoiHoc, DatLop, GiaSu } = require("../models");
 const bcryptjs = require("bcryptjs");
+const { cloudinary } = require("../utils/cloudinary");
 
 const layDanhSachNguoiHoc = async (req, res) => {
   try {
@@ -30,6 +31,7 @@ const taoNguoiHoc = async (req, res) => {
       nguoiDung,
       vaiTro,
       hoTen,
+      gioiTinh,
       anhDaiDien,
       monHoc,
       lopHoc,
@@ -39,6 +41,8 @@ const taoNguoiHoc = async (req, res) => {
       duong,
       diaChi,
       mucLuong,
+      phanTramPhi,
+      phiGiaSu,
       soBuoi,
       thoiGian,
       thongTin,
@@ -55,6 +59,7 @@ const taoNguoiHoc = async (req, res) => {
       nguoiDung,
       vaiTro,
       hoTen,
+      gioiTinh,
       anhDaiDien,
       monHoc,
       lopHoc,
@@ -64,6 +69,8 @@ const taoNguoiHoc = async (req, res) => {
       duong,
       diaChi,
       mucLuong,
+      phanTramPhi,
+      phiGiaSu,
       soBuoi,
       thoiGian,
       thongTin,
@@ -85,6 +92,7 @@ const capNhatNguoiHoc = async (req, res) => {
       nguoiDung,
       vaiTro,
       hoTen,
+      gioiTinh,
       anhDaiDien,
       monHoc,
       lopHoc,
@@ -94,6 +102,8 @@ const capNhatNguoiHoc = async (req, res) => {
       duong,
       diaChi,
       mucLuong,
+      phanTramPhi,
+      phiGiaSu,
       soBuoi,
       thoiGian,
       thongTin,
@@ -111,6 +121,7 @@ const capNhatNguoiHoc = async (req, res) => {
         nguoiDung,
         vaiTro,
         hoTen,
+        gioiTinh,
         anhDaiDien,
         monHoc,
         lopHoc,
@@ -120,11 +131,36 @@ const capNhatNguoiHoc = async (req, res) => {
         duong,
         diaChi,
         mucLuong,
+        phanTramPhi,
+        phiGiaSu,
         soBuoi,
         thoiGian,
         thongTin,
         yeuCau,
         daGiao,
+      },
+      {
+        where: {
+          id, //id: id
+        },
+      }
+    );
+    const chiTietNguoiHoc = await NguoiHoc.findByPk(id);
+    res.status(200).send(chiTietNguoiHoc);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const capNhatPhi = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { phanTramPhi, phiGiaSu } = req.body;
+
+    const result = await NguoiHoc.update(
+      {
+        phanTramPhi,
+        phiGiaSu,
       },
       {
         where: {
@@ -149,6 +185,40 @@ const xoaNguoiHoc = async (req, res) => {
       },
     });
     res.status(200).send(chiTietNguoiHoc);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const anhDaiDien = async (req, res) => {
+  try {
+    const { nguoiDung, file } = req;
+
+    const userUploadAvatar = await NguoiHoc.findByPk(nguoiDung.id);
+
+    // cloudinary.v2.uploader.upload(file, options, callback);
+    const result = await cloudinary.uploader.upload(file.path, {
+      use_filename: true,
+      folder: `/giasumantiep/nguoihoc/anhdaidien/${nguoiDung.sdt}`,
+      format: "png",
+      // Giảm dung lượng hình cho vào kích thước 300x300
+      transformation: {
+        background: "black",
+        height: 300,
+        width: 300,
+        crop: "pad",
+        quality: "auto",
+        fetch_format: "auto",
+      },
+    });
+
+    userUploadAvatar.anhDaiDien = result.url;
+    await userUploadAvatar.save();
+
+    res.status(200).json({
+      message: "Upload avatar thành công",
+      url: result.url,
+    });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -182,5 +252,7 @@ module.exports = {
   taoNguoiHoc,
   capNhatNguoiHoc,
   xoaNguoiHoc,
+  anhDaiDien,
   thongTinNguoiHoc,
+  capNhatPhi,
 };

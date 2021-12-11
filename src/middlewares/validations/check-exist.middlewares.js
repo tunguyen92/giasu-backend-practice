@@ -18,27 +18,6 @@ const checkExist = (Model) => async (req, res, next) => {
   }
 };
 
-const kiemTraSdtTrung = (Model) => async (req, res, next) => {
-  try {
-    const { sdt } = req.body;
-    const chiTiet = await Model.findOne({
-      where: {
-        sdt,
-      },
-    });
-    if (chiTiet) {
-      next();
-    } else {
-      res.status(404).send({
-        message: "sdt đã được sử dụng",
-      });
-    }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
-
 module.exports = {
   checkExist,
-  kiemTraSdtTrung,
 };

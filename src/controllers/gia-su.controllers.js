@@ -34,6 +34,7 @@ const taoGiaSu = async (req, res) => {
       vaiTro,
       hoTen,
       ngaySinh,
+      gioiTinh,
       nguyenQuan,
       giongNoi,
       diaChi,
@@ -64,6 +65,7 @@ const taoGiaSu = async (req, res) => {
       vaiTro,
       hoTen,
       ngaySinh,
+      gioiTinh,
       nguyenQuan,
       giongNoi,
       diaChi,
@@ -99,6 +101,7 @@ const capNhatGiaSu = async (req, res) => {
       vaiTro,
       hoTen,
       ngaySinh,
+      gioiTinh,
       nguyenQuan,
       giongNoi,
       diaChi,
@@ -183,7 +186,7 @@ const anhDaiDien = async (req, res) => {
     // cloudinary.v2.uploader.upload(file, options, callback);
     const result = await cloudinary.uploader.upload(file.path, {
       use_filename: true,
-      folder: "/giasumantiep/avatar-giasu",
+      folder: `/giasumantiep/giasu/anhdaidien/${nguoiDung.sdt}`,
       format: "png",
       // Giảm dung lượng hình cho vào kích thước 300x300
       transformation: {
@@ -218,7 +221,7 @@ const anhBangCap = async (req, res) => {
       const { path } = file;
       const result = await cloudinary.uploader.upload(path, {
         use_filename: true,
-        folder: "/giasumantiep/anhbangcap-giasu",
+        folder: `/giasumantiep/giasu/anhbangcap/${nguoiDung.sdt}`,
         transformation: {
           background: "black",
           height: 600,
@@ -251,7 +254,7 @@ const anhCCCD = async (req, res) => {
       const { path } = file;
       const result = await cloudinary.uploader.upload(path, {
         use_filename: true,
-        folder: "/giasumantiep/anhCCD-giasu",
+        folder: `/giasumantiep/giasu/anhCCCD/${nguoiDung.sdt}`,
         transformation: {
           background: "black",
           height: 400,

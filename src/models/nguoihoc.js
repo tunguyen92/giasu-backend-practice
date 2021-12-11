@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   NguoiHoc.init(
     {
-      sdt: DataTypes.STRING,
+      sdt: {
+        type: DataTypes.STRING,
+      },
       matKhau: DataTypes.STRING,
       nguoiDung: {
         type: DataTypes.STRING,
@@ -33,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "khachHang",
       },
       hoTen: DataTypes.STRING,
+      gioiTinh: DataTypes.STRING,
       anhDaiDien: DataTypes.STRING,
       monHoc: DataTypes.STRING,
       lopHoc: DataTypes.STRING,
@@ -42,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       duong: DataTypes.STRING,
       diaChi: DataTypes.STRING,
       mucLuong: DataTypes.FLOAT,
+      phanTramPhi: DataTypes.INTEGER,
+      phiGiaSu: DataTypes.FLOAT,
       soBuoi: DataTypes.STRING,
       thoiGian: DataTypes.STRING,
       thongTin: DataTypes.STRING,

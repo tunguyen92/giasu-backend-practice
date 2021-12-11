@@ -21,7 +21,6 @@ const {
 } = require("../middlewares/uploads/upload-images.middleware");
 const {
   checkExist,
-  kiemTraSdtTrung,
 } = require("../middlewares/validations/check-exist.middlewares");
 const { GiaSu } = require("../models");
 
@@ -178,7 +177,7 @@ giaSuRouter.post(
 
 giaSuRouter.get("/LayDanhSachGiaSu", layDanhSachGiaSu);
 giaSuRouter.get("/LayChiTietGiaSu/:id", checkExist(GiaSu), layChiTietGiaSu);
-giaSuRouter.post("/ThemGiaSu", kiemTraSdtTrung(GiaSu), taoGiaSu);
+giaSuRouter.post("/ThemGiaSu", taoGiaSu);
 giaSuRouter.put("/CapNhatGiaSu/:id", checkExist(GiaSu), capNhatGiaSu);
 giaSuRouter.delete(
   "/XoaGiaSu/:id",

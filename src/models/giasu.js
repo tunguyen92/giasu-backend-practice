@@ -22,7 +22,23 @@ module.exports = (sequelize, DataTypes) => {
   }
   GiaSu.init(
     {
-      sdt: DataTypes.STRING,
+      sdt: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isUnique: (value, next) => {
+            GiaSu.findAll({
+              where: { sdt: value },
+              attributes: ["id"],
+            })
+              .then((user) => {
+                if (user.length != 0) next(new Error("Sđt đã được sử dụng!"));
+                next();
+              })
+              .catch((onError) => console.log(onError));
+          },
+        },
+      },
       matKhau: DataTypes.STRING,
       email: DataTypes.STRING,
       tinhThanh: DataTypes.STRING,
@@ -36,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       hoTen: DataTypes.STRING,
       ngaySinh: DataTypes.DATE,
+      gioiTinh: DataTypes.STRING,
       nguyenQuan: DataTypes.STRING,
       giongNoi: DataTypes.STRING,
       diaChi: DataTypes.STRING,

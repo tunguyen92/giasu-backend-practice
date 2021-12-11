@@ -177,6 +177,10 @@ const rootRouter = Router();
  *           type: string
  *         mucLuong:
  *           type: float
+ *         phanTramPhi:
+ *           type: integer
+ *         phiGiaSu:
+ *           type: float
  *         soBuoi:
  *           type: string
  *         thoiGian:
@@ -203,7 +207,9 @@ const rootRouter = Router();
  *         phuongXa: P3
  *         duong: Hà Huy Giáp
  *         diaChi: số nhà 123
- *         mucLuong: 200000
+ *         mucLuong: 1000000
+ *         phanTramPhi: 40
+ *         phiGiaSu: 400000
  *         soBuoi: 3 buổi
  *         thoiGian: tối 2, 4, 6
  *         thongTin: học sinh nữ
@@ -222,6 +228,28 @@ const rootRouter = Router();
  *       properties:
  *         sdt:
  *           type: string
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CapNhatPhi:
+ *       type: object
+ *       required:
+ *         - phanTramPhi
+ *         - phiGiaSu
+ *       properties:
+ *         mucLuong:
+ *           type: float
+ *         phanTramPhi:
+ *           type: integer
+ *         phiGiaSu:
+ *           type: float
+ *
+ *       example:
+ *          phanTramPhi: 20
+ *          phiGiaSu: 40000
  */
 
 // http://localhost:8080/api/v1/GiaSu

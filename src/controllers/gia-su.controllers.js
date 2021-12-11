@@ -120,12 +120,15 @@ const capNhatGiaSu = async (req, res) => {
       thoiGianDay,
     } = req.body;
 
+    const giaSuCapNhat = await GiaSu.findByPk(id);
+    const sdtBanDau = giaSuCapNhat.sdt === sdt ? undefined : sdt;
+
     const salt = bcryptjs.genSaltSync(10);
     const hashPassword = bcryptjs.hashSync(matKhau, salt);
 
     const result = await GiaSu.update(
       {
-        sdt,
+        sdt: sdtBanDau,
         matKhau: hashPassword,
         email,
         tinhThanh,
@@ -133,6 +136,7 @@ const capNhatGiaSu = async (req, res) => {
         vaiTro,
         hoTen,
         ngaySinh,
+        gioiTinh,
         nguyenQuan,
         giongNoi,
         diaChi,
@@ -156,6 +160,7 @@ const capNhatGiaSu = async (req, res) => {
         },
       }
     );
+
     const chiTietGiaSu = await GiaSu.findByPk(id);
     res.status(200).send(chiTietGiaSu);
   } catch (error) {

@@ -4,6 +4,7 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const { rootRouter } = require("./src/routers/root.routers");
 
+// Tùy chỉnh options swagger
 const options = {
   definition: {
     openapi: "3.0.0",

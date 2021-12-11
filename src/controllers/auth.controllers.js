@@ -2,6 +2,7 @@ const { NguoiHoc, GiaSu } = require("../models");
 const bcryptjs = require("bcryptjs");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const sgMail = require("@sendgrid/mail");
 
 const dangKiNguoiHoc = async (req, res) => {
   try {
@@ -163,15 +164,16 @@ const caiLaiMatKhau = async (req, res) => {
         sdt,
       },
     });
+
     if (chiTietGiaSu) {
       const salt = bcryptjs.genSaltSync(10);
       const hashPassword = bcryptjs.hashSync(matKhauMacDinh, salt);
 
       chiTietGiaSu.matKhau = hashPassword;
       await chiTietGiaSu.save();
-
       res.status(200).send({
-        messages: "Reset mật khẩu thành công",
+        messages:
+          "Reset mật khẩu thành công. Vào email của bạn nhận mật khẩu mới.",
         matKhauMoi: matKhauMacDinh,
       });
     } else {
@@ -179,6 +181,30 @@ const caiLaiMatKhau = async (req, res) => {
         messages: "SĐT không chính xác",
       });
     }
+
+    // Gửi mail với SendGrid
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const msg = {
+      from: {
+        name: "Gia sư Mẫn Tiệp",
+        email: "tunguyen@giasumantiep.com",
+      },
+      to: chiTietGiaSu.email,
+      subject: "Reset mật khẩu thành công",
+      text: "Không biết sử dụng để làm gì",
+      html: `Mật khẩu mới của bạn là <strong>${matKhauMacDinh}</strong>`,
+    };
+
+    sgMail
+      .send(msg)
+      .then((response) => {
+        console.log(response[0].statusCode);
+        console.log(response[0].headers);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } catch (error) {
     res.status(500).send(error);
   }

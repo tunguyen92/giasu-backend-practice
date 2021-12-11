@@ -24,12 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       sdt: {
         type: DataTypes.STRING,
-        allowNull: false,
         validate: {
           isUnique: (value, next) => {
             GiaSu.findAll({
               where: { sdt: value },
-              attributes: ["id"],
             })
               .then((user) => {
                 if (user.length != 0) next(new Error("Sđt đã được sử dụng!"));

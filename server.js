@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1", rootRouter);
 
 // http://localhost:8080
-const port = process.env.port;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);

@@ -36,7 +36,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(passport.initialize());
 
 //setup định dạng body thành json
-app.use(express.json());
+app.use(express.json({ extended: false }));
 
 const pathPublicDirectory = path.join(__dirname, "./public");
 // http://localhost:8080/public <=> folder public

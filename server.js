@@ -3,6 +3,10 @@ const dotenv = require("dotenv");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const { rootRouter } = require("./src/routers/root.routers");
+const path = require("path");
+const passport = require("passport");
+
+dotenv.config();
 
 // Tùy chỉnh options swagger
 const options = {
@@ -29,10 +33,8 @@ const app = express();
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-const path = require("path");
-const { configEnv } = require("./src/config");
+app.use(passport.initialize());
 
-dotenv.config();
 //setup định dạng body thành json
 app.use(express.json());
 
@@ -48,7 +50,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1", rootRouter);
 
 // http://localhost:8080
-const port = configEnv.server.port;
+const port = process.env.port;
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);

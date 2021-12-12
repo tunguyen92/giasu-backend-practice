@@ -3,6 +3,8 @@ const bcryptjs = require("bcryptjs");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const dangKiNguoiHoc = async (req, res) => {
   try {
@@ -158,7 +160,9 @@ const dangNhap = (Model) => async (req, res) => {
 const caiLaiMatKhau = async (req, res) => {
   try {
     const { sdt } = req.body;
+    //Tạo chuỗi kí tự bất kì
     const matKhauMacDinh = crypto.randomBytes(10).toString("hex");
+
     const chiTietGiaSu = await GiaSu.findOne({
       where: {
         sdt,
@@ -172,8 +176,7 @@ const caiLaiMatKhau = async (req, res) => {
       chiTietGiaSu.matKhau = hashPassword;
       await chiTietGiaSu.save();
       res.status(200).send({
-        messages:
-          "Reset mật khẩu thành công. Vào email của bạn nhận mật khẩu mới.",
+        messages: `Reset mật khẩu thành công. Vào email ${chiTietGiaSu.email} để nhận mật khẩu mới.`,
         matKhauMoi: matKhauMacDinh,
       });
     } else {
@@ -210,9 +213,22 @@ const caiLaiMatKhau = async (req, res) => {
   }
 };
 
+const dangNhapBangFacebook = async (req, res) => {
+  try {
+    const token = await jwt.sign(
+      { id: req.user.dataValues.id },
+      process.env.SECRETKEY
+    );
+    res.send({ token });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   dangKiNguoiHoc,
   dangKiGiaSu,
   dangNhap,
   caiLaiMatKhau,
+  dangNhapBangFacebook,
 };

@@ -20,6 +20,7 @@ const rootRouter = Router();
  *         - vaiTro
  *         - hoTen
  *         - ngaySinh
+ *         - gioiTinh
  *         - nguyenQuan
  *         - giongNoi
  *         - diaChi
@@ -100,6 +101,7 @@ const rootRouter = Router();
  *          vaiTro: quanTri
  *          hoTen: Nguyễn Thị Sói
  *          ngaySinh: 1992-02-21
+ *          gioiTinh: Nam
  *          nguyenQuan: HN
  *          giongNoi: Nam
  *          diaChi: 21 hà nội
@@ -131,6 +133,7 @@ const rootRouter = Router();
  *         - nguoiDung
  *         - vaiTro
  *         - hoTen
+ *         - gioiTinh
  *         - anhDaiDien
  *         - monHoc
  *         - lopHoc
@@ -199,6 +202,7 @@ const rootRouter = Router();
  *         nguoiDung: nguoiHoc
  *         vaiTro: quanTri
  *         hoTen: Nguyễn Ti
+ *         gioiTinh: Nữ
  *         anhDaiDien: ảnh
  *         monHoc: Toán Lý Hóa
  *         lopHoc: 12
@@ -250,6 +254,41 @@ const rootRouter = Router();
  *       example:
  *          phanTramPhi: 20
  *          phiGiaSu: 40000
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     DangNhap:
+ *       type: object
+ *       required:
+ *         - sdt
+ *         - matKhau
+ *       properties:
+ *         mucLuong:
+ *           type: float
+ *         sdt:
+ *           type: string
+ *         matKhau:
+ *           type: string
+ *
+ *       example:
+ *          sdt: 0986456214
+ *          matKhau: 123456
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     DangNhapFacebook:
+ *       type: object
+ *       required:
+ *         - access_token
+ *       properties:
+ *         access_token:
+ *           type: string
  */
 
 // http://localhost:8080/api/v1/GiaSu

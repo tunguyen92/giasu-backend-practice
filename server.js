@@ -1,12 +1,9 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const { rootRouter } = require("./src/routers/root.routers");
 const path = require("path");
 const passport = require("passport");
-
-dotenv.config();
 
 // Tùy chỉnh options swagger
 const options = {

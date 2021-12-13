@@ -43,7 +43,7 @@ const pathPublicDirectory = path.join(__dirname, "./public");
 app.use("/public", express.static(pathPublicDirectory));
 
 app.get("/", (req, res) => {
-  res.send("Helô Tú");
+  res.send("Hello World! This is Home Page Route");
 });
 
 // http://localhost:8080/api/v1/

@@ -35,10 +35,6 @@ app.use(passport.initialize());
 //setup định dạng body thành json
 app.use(express.json({ extended: false }));
 
-const pathPublicDirectory = path.join(__dirname, "./public");
-// http://localhost:8080/public <=> folder public
-app.use("/public", express.static(pathPublicDirectory));
-
 app.get("/", (req, res) => {
   res.send("Hello World! This is Home Page Route");
 });

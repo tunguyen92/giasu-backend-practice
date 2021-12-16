@@ -1,0 +1,4 @@
+Còn các task chưa làm:
+- Format ngày sinh gia sư
+- Check validate trùng đặt lớp
+- ...lòi ra cái nào làm tiếp...

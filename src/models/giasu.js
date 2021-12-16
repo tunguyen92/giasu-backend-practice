@@ -49,7 +49,16 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "khachHang",
       },
       hoTen: DataTypes.STRING,
-      ngaySinh: DataTypes.DATE,
+      // format: YYYY-MM-DD
+      ngaySinh: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+        get() {
+          const dateText = this.getDataValue("ngaySinh");
+          return moment(dateText).format("DD/MM/YYYY");
+        },
+      },
       gioiTinh: DataTypes.STRING,
       nguyenQuan: DataTypes.STRING,
       giongNoi: DataTypes.STRING,

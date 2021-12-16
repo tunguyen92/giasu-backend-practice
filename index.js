@@ -18,6 +18,9 @@ const options = {
       {
         url: "https://giasumantiep-backend.herokuapp.com/",
       },
+      {
+        url: "http://localhost:8080",
+      },
     ],
   },
   apis: ["./src/routers/*.js"],

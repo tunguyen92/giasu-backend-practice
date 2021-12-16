@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       ngaySinh: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       gioiTinh: {
         type: Sequelize.STRING,

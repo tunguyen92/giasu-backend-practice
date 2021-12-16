@@ -1,3 +1,5 @@
+const { DatLop } = require("../../models");
+
 const checkExist = (Model) => async (req, res, next) => {
   try {
     const { id } = req.params;

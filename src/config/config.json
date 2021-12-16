@@ -4,7 +4,12 @@
     "password": "tit.Kantee29",
     "database": "project_giasumantiep",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "useUTC": false,
+      "dateStrings": true,
+      "timezone": "+07:00"
+    }
   },
   "test": {
     "username": "root",

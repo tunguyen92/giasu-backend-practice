@@ -22,7 +22,7 @@
     "username": "tunguyen_root",
     "password": "tit.Kantee29",
     "database": "tunguyen_giasumantiep_db",
-    "host": "https://database.giasumantiep.com",
+    "host": "localhost:3306",
     "dialect": "mysql",
     "dialectOptions": {
       "useUTC": false,

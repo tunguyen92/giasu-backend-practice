@@ -3,9 +3,6 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const { rootRouter } = require("./src/routers/root.routers");
 const passport = require("passport");
-const dotenv = require("dotenv");
-dotenv.config();
-
 // Tùy chỉnh options swagger
 const options = {
   definition: {
@@ -47,7 +44,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1", rootRouter);
 
 // http://localhost:8080
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3306;
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);

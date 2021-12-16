@@ -16,7 +16,7 @@ const options = {
 
     servers: [
       {
-        url: "https://giasumantiep-backend.herokuapp.com/",
+        url: "https://database.giasumantiep.com/",
       },
       {
         url: "http://localhost:8080",

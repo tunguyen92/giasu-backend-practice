@@ -1,4 +1,5 @@
 Còn các task chưa làm:
 - Format ngày sinh gia sư
 - Check validate trùng đặt lớp
-- ...lòi ra cái nào làm tiếp...
+- Upload ảnh ở local được nhưng trên hosting không được
+- Chưa gửi được email đổi mật khẩu

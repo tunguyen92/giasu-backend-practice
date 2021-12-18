@@ -6,7 +6,6 @@
     "host": "127.0.0.1",
     "dialect": "mysql",
     "dialectOptions": {
-      "useUTC": false,
       "dateStrings": true,
       "timezone": "+07:00"
     }
@@ -22,10 +21,10 @@
     "username": "tunguyen_root",
     "password": "tit.Kantee29",
     "database": "tunguyen_giasumantiep_db",
-    "host": "database.giasumantiep.com",
+    "host": "localhost",
+    "port": "3306",
     "dialect": "mysql",
     "dialectOptions": {
-      "useUTC": false,
       "dateStrings": true,
       "timezone": "+07:00"
     }

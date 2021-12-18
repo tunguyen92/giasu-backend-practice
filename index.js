@@ -15,6 +15,9 @@ const options = {
 
     servers: [
       {
+        url: "https://database.giasumantiep.com/",
+      },
+      {
         url: "https://backend.giasumantiep.com/",
       },
       {
@@ -44,8 +47,10 @@ app.get("/", (req, res) => {
 app.use("/api/v1", rootRouter);
 
 // http://localhost:8080
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
+
+// app.listen();
